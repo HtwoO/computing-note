@@ -126,7 +126,7 @@ Revert above change
 
 on macOS
 
-CLI> pmset -g rawlog
+>>> pmset -g rawlog
 pmset is in RAW logging mode now. Hit ctrl-c to exit.
  * Battery matched at registry = 8707
 07/17/25 20:29:46
