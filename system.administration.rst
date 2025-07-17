@@ -125,6 +125,7 @@ Revert above change
 >>> sudo systemctl unmask sleep.target suspend.target hibernate.target hybrid-sleep.target
 
 on macOS
+View live raw log from battery
 
 >>> pmset -g rawlog
 pmset is in RAW logging mode now. Hit ctrl-c to exit.
@@ -133,6 +134,51 @@ pmset is in RAW logging mode now. Hit ctrl-c to exit.
  AC; Not Charging; 87%; Cap=6285: FCC=7162; Design=7000; Time=0:00; 0mA; Cycles=15/1000; Location=0;
  Polled boot=06/18/25 19:55:34; Full=07/17/25 20:21:57; User visible=07/17/25 20:28:57
 .
+
+>>> pmset -g
+System-wide power settings:
+ SleepDisabled		0
+Currently in use:
+ standbydelaylow      10800
+ . 
+ hibernatefile        /var/vm/sleepimage
+ .
+ disksleep            10
+ standbydelayhigh     86400
+ .
+ lidwake              1
+
+>>> pmset -g sched
+Scheduled power events:
+ [0]  wake at 07/20/25 06:16:22 by 'com.apple.alarm.user-visible-Weekly Usage Report'
+
+>>> pmset -g batt
+Now drawing from 'AC Power'
+ -InternalBattery-0 (id=6553699)	92%; AC attached; not charging present: true
+
+>>> pmset -g everything > ~/"$(date +%Y-%m-%d)".pmset.everyting.txt
+
+>>> cat ~/2025-07-17.pmset.everythine.txt
+pmset is invoking all non-blocking -g arguments
+INVOKE: pmset -g live
+.
+INVOKE: pmset -g log
+PM ASL data store: /var/log/powermanagement
+2025-07-10 21:07:22 +0800 Assertions            PID 162(WindowServer) Summary UserIs
+Active "com.apple.iohideventsystem.queue.tickle serviceID:100017151 name:NULL produc
+t:Apple Internal Keyb eventType:11" 00:00:00  id:0x0x90000a3ea [System: DeclUser kDi
+sp]
+.
+Total Sleep/Wakes since boot:363
+.
+INVOKE: pmset -g stats
+Sleep Count:363
+Dark Wake Count:324
+User Wake Count:1378
+.
+INVOKE: pmset -g systemstate
+Current System Capabilities are: CPU Graphics Audio Network
+Current Power State: 4
 
 Read full manpage for macOS pmset command
 
