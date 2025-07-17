@@ -124,6 +124,20 @@ Revert above change
 
 >>> sudo systemctl unmask sleep.target suspend.target hibernate.target hybrid-sleep.target
 
+on macOS
+
+CLI> pmset -g rawlog
+pmset is in RAW logging mode now. Hit ctrl-c to exit.
+ * Battery matched at registry = 8707
+07/17/25 20:29:46
+ AC; Not Charging; 87%; Cap=6285: FCC=7162; Design=7000; Time=0:00; 0mA; Cycles=15/1000; Location=0;
+ Polled boot=06/18/25 19:55:34; Full=07/17/25 20:21:57; User visible=07/17/25 20:28:57
+.
+
+Read full manpage for macOS pmset command
+
+>>> man pmset
+
 On Windows
 
 Reboot computer
