@@ -12,7 +12,7 @@ ssb  rsa2048/<sub-key-id>
 
 Inside GnuPG interactive session:
 
-gpg> expire
+>>> expire
 Changing expiration time for the primary key.
 Please specify how long the key should be valid.
          0 = key does not expire
@@ -30,7 +30,7 @@ ssb  rsa2048/<sub-key-id>
      created: 2019-04-03  expired: 2022-04-06  usage: E
 [ expired] (1). Example Debian Team <deb-team@example.net>
 
-gpg> key 1
+>>> key 1
 sec  rsa2048/<sub-key-id>
      created: 2019-04-03  expired: 2023-04-06  usage: SC
      trust: unknown       validity: expired
@@ -38,7 +38,7 @@ ssb* rsa2048/<sub-key-id>
      created: 2019-04-03  expired: 2022-04-06  usage: E
 [ expired] (1). Example Debian Team <deb-team@example.net>
 
-gpg> expire
+>>> expire
 Changing expiration time for a subkey.
 Please specify how long the key should be valid.
          0 = key does not expire
@@ -56,4 +56,5 @@ ssb* rsa2048/<sub-key-id>
      created: 2019-04-03  expired: 2023-04-06  usage: E
 [ expired] (1). Example Debian Team <deb-team@example.net>
 
-gpg> save
+>>> save
+

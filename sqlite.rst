@@ -66,15 +66,21 @@ Import data from CSV file
 --------------------------------
 
 In SQLite REPL
+
 >>> create table foo(a, b);
+
 >>> .mode csv
+
 >>> .import test.csv foo
 
 if the first line of your csv file contains the column names, then you can omit the first create table command and sqlite will use the column names from the csv file
-SQLite> .import test.csv foo --csv
+
+>>> .import test.csv foo --csv
 
 From CLI
+
 >>> sqlite3 -header -csv input.db "select * from table_name;" > table_name.csv
+
 >>> sqlite3 -header -csv input.db < query.sql > data.csv
 
 You can use ``LiteCLI`` for a much better terminal experience when using SQLite, but it does not support some of SQLite's own commands.
@@ -83,3 +89,4 @@ Reference
 ------------
 
 2013, https://stackoverflow.com/questions/14947916/import-csv-to-sqlite
+
