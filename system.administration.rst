@@ -22,7 +22,7 @@ Check certain CPU feature
 >>> sysctl -a | grep 'machdep.cpu.features' | grep --ignore-case 'sse'
 machdep.cpu.features: FPU VME DE PSE TSC MSR PAE MCE CX8 APIC SEP MTRR PGE MCA CMOV PAT PSE36 CLFSH DS ACPI MMX FXSR SSE SSE2 SS HTT TM PBE SSE3 PCLMULQDQ DTES64 MON DSCPL VMX EST TM2 SSSE3 FMA CX16 TPR PDCM SSE4.1 SSE4.2 x2APIC MOVBE POPCNT AES PCID XSAVE OSXSAVE SEGLIM64 TSCTMR AVX1.0 RDRAND F16C
 
->>>
+>>> lscpu
 
 General computing environment
 --------------------------------
@@ -262,7 +262,8 @@ With Windows command line including cmd.exe
 
 >>> taskkill /pid 1230 /pid 1241 /pid 1253
 
-To end the process with the process ID 2134 and any child processes that it started, but only if those processes were started by the Administrator account
+To end process with certain ID and any child processes that it started, but only if those processes were started by the Administrator account
+
 >>> taskkill /pid 2134 /t /fi "username eq administrator"
 
 Find out network service list
@@ -582,16 +583,19 @@ net.ipv4.ping_group_range = 0 1000
 ``macOS``
 
 ``networksetup -setmanual networkservice ip subnet router``
+
 >>> networksetup -setmanual 'AX88179' 10.3.3.3 255.255.255.0 10.3.3.254
 
 ``networksetup -setv6manual ip prefixlength router``
 
 ``ipconfig set interface-name (MANUAL | INFORM) ip-address subnet-mask``
+
 >>> ipconfig set en4 MANUAL ip-address subnet-mask
 
 >>> networksetup -setdhcp "Ethernet"
 
 ``ipconfig set interface-name DHCP``
+
 >>> ipconfig set en4 DHCP
 
 ``ipconfig set interface-name AUTOMATIC-V6``
@@ -639,7 +643,7 @@ destination: default
       flags: <UP,GATEWAY,DONE,STATIC,PRCLONING,GLOBAL>
 ...
 
-(manually) find out the service you're using
+(manually) find out the service in use
 
 >>> networksetup -listnetworkserviceorder
 ...
