@@ -758,6 +758,28 @@ Then ``restart`` the ``vnstat.service``, ``reload`` aren't enough: ``sudo system
  eth0 [disabled]:
        2022-01    339.53 GiB  /  352.96 GiB  /  692.49 GiB
 
+>>> file /var/lib/vnstat/vnstat.db # since certain version SQLite is used for vnstat persistent data
+/var/lib/vnstat/vnstat.db: SQLite 3.x database, last written using SQLite version 3046001, file counter 2089, database pages 44, 1st free page 31, free pages 2, cookie 0xa, schema 4, UTF-8, version-valid-for 2089
+
+>>> vnstat --add --iface ens5
+Adding interface "ens5" to database for monitoring.
+Error: Exec step failed (8: attempt to write a readonly database): "insert into interface (name, active, created, updated, rxcounter, txcounter, rxtotal, txtotal) values ('ens5', 1, datetime('now', 'localtime'), datetime('now', 'localtime'), 0, 0, 0, 0)"
+Error: Adding interface "ens5" to database failed.
+>>> sudo vnstat --add --iface ens5
+Adding interface "ens5" to database for monitoring.
+vnStat daemon will automatically start monitoring "ens5" within 5 minutes if the daemon process is currently running.
+
+>>> vnstat
+.
+ ens5: No data. Timestamp of last update is same 2026-03-25 20:53:04 as of database creation.
+.
+
+After restarting vnstat.service (reloading did not seem to help)
+
+>>> vnstat
+ ens5:
+                                no data available
+
 ``squid``
 
 >>> squidclient [-h 127.0.0.1 -p 3128] mgr:info
