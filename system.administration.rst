@@ -799,6 +799,39 @@ Append hashed host key into known_hosts
 
 >>> ssh-keyscan -H hostname >> ~/.ssh/known_hosts
 
+>>> journalctl _SYSTEMD_UNIT=ssh.service # less info than 'journalctl --unit ssh.service'?
+.
+-- Boot 942f58508796431285078ff7ed834adc --
+10月 31 13:52:30 root sshd[59]: error: Bind to port 22 on 0.0.0.0 failed: Address already in use.
+10月 31 13:52:30 root sshd[59]: error: Bind to port 22 on :: failed: Address already in use.
+10月 31 13:52:30 root sshd[59]: fatal: Cannot bind any address.
+.
+11月 01 01:20:36 Laptop3 sshd-session[107172]: Accepted publickey for root from 192.168.3.8 port 53894 ssh2: RSA SHA256:BHYaJHNTfMWFuAFhFSgH+7Gq6oAF2lyEHq2cfdGWCUw
+11月 01 01:20:36 Laptop3 sshd-session[107172]: pam_unix(sshd:session): session opened for user root(uid=0) by root(uid=0)
+11月 01 01:20:36 Laptop3 sshd-session[107172]: pam_unix(sshd:session): session closed for user root
+
+>>> journalctl --identifier=sshd # failed SSH login?
+.
+-- Boot 3f00d7d1de76486fab1acaf9cfdb0188 --
+Sep 12 23:43:28 ip-... sshd[991]: Server listening on 0.0.0.0 port 233.
+Sep 12 23:43:28 ip-... sshd[991]: Server listening on :: port 233.
+Sep 22 23:09:13 ip-... sshd[991]: Timeout before authentication for connection from 172... to 188..., pid = 167850
+Sep 22 23:09:14 ip-... sshd[991]: Timeout before authentication for connection from 172... to 188..., pid = 167852
+Sep 24 15:51:47 ip-... sshd[991]: Timeout before authentication for connection from 172... to 157..., pid = 220636
+Sep 25 02:58:10 ip-... sshd[991]: Timeout before authentication for connection from 172... to 223..., pid = 241264
+Sep 25 02:58:24 ip-... sshd[991]: drop connection #0 from [223...]:52140 on [172...]:233 penalty: exceeded LoginGraceTime
+Sep 25 02:58:45 ip-... sshd[991]: drop connection #0 from [223...]:52135 on [172...]:233 penalty: exceeded LoginGraceTime
+Sep 25 02:59:08 ip-... sshd[991]: drop connection #0 from [223...]:52135 on [172...]:233 penalty: exceeded LoginGraceTime
+.
+-- Boot 942f58508796431285078ff7ed834adc --
+10月 31 13:52:30 root sshd[59]: error: Bind to port 22 on 0.0.0.0 failed: Address already in use.
+10月 31 13:52:30 root sshd[59]: error: Bind to port 22 on :: failed: Address already in use.
+10月 31 13:52:30 root sshd[59]: fatal: Cannot bind any address.
+-- Boot 6bd7e43f8d494ddfa509b5653f959d47 --
+10月 31 14:11:25 localhost sshd[765]: Server listening on 0.0.0.0 port 22.
+10月 31 14:11:25 localhost sshd[765]: Server listening on :: port 22.
+10月 31 14:13:15 localhost sshd[765]: Received signal 15; terminating.
+
 ``strace``
 
 >>> strace -o cmd.strace.$(date +%Y%m%d.%H%M).log -rt <cmd>
