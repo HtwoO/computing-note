@@ -62,7 +62,7 @@ Change hostname of the rootfs
 
 Change root password:
 
->>> systemd-nspawn -D <rootfs>
+>>> systemd-nspawn --directory=<rootfs>
 >>> chroot <rootfs>
 
 Customize your preferred mirror
@@ -73,11 +73,11 @@ Customize your preferred mirror
 Tool for system admin
 
 >>> apt-get --yes install --no-install-recommends bash-completion \
-    ca-certificates efibootmgr gnupg htop sudo tree zstd
+    ca-certificates efibootmgr gnupg htop ncdu sudo tree
 
 Tool for network admin
 
->>> apt-get --yes install --no-install-recommends ncat nftables
+>>> apt-get --yes install --no-install-recommends dnsmasq inetutils-ping iproute2 iwd netcat-openbsd nftables tcpdump
 
 Server remote management
 
@@ -89,7 +89,7 @@ Basic development package
 
 Tool for every day use
 
->>> apt-get --yes install --no-install-recommends curl file ncdu rsync tmux vim wget
+>>> apt-get --yes install --no-install-recommends curl file less rsync tmux vim wget zstd
 
 Some regularly used package ``dbus`` ``iproute2`` ``linux-image-amd64`` ``locales`` ``sudo`` ``systemd-sysv`` ``usrmerge``
 
@@ -173,7 +173,7 @@ Use ``reportbug`` to send a bug report to Debian with email
 
 Considering that most user may not have an email client setup properly to send email from a terminal, I record the following step for a manual bug report with regular web email client like Gmail or Microsoft Outlook.
 
-You can use interactive mode to generate ``~/.reportbugrc``, but below is a file with example content, you should change certain field according to your system environment. ::
+You can run ``reportbug --configure`` and use its interactive mode to generate ``~/.reportbugrc``, but below is a file with example content, you should change certain field according to your system environment. ::
 
     reportbug_version "7.5.3~deb10u1"
     mode standard
