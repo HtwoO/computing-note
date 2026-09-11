@@ -43,7 +43,7 @@
 2024-01-19T06:36:26.779805Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
 2024-01-19T06:36:27.826397Z 0 [System] [MY-013172] [Server] Received SHUTDOWN from user <via user signal>. Shutting down mysqld (Version: 8.0.34).
 
->>> /usr/local/mysql/bin/mysqld_safe --datadir="$HOME/project/database/mysql/db0 --user=mysql
+>>> /usr/local/opt/mysql@8.0/bin/mysqld_safe --datadir="$HOME/project/database/mysql/db0" --user=mysql
 
 >>> mysqladmin --user=root --password shutdown
 
@@ -130,7 +130,9 @@ Enter password:
 </resultset>
 
 Grouping Rows with GROUP BY, 2009, https://www.sqlsnippets.com/en/topic-13100.html
+
 Using GROUP BY with ROLLUP, CUBE, and GROUPING SETS, 2012, http://msdn.microsoft.com/en-us/library/bb522495.aspx
+
 2012 https://learn.microsoft.com/en-us/previous-versions/sql/sql-server-2008-r2/bb522495(v=sql.105)
 
 Exporting MySQL query result to spreadsheet
@@ -148,6 +150,7 @@ Server side data export
 The following didn't work, tested on 2024-01-31
 
 `0x22`: `"`, `0x2c`: `,` `0x0d`: `\r`, `0x0a`: `\n`
+
 >>> mysqldump --host=serverHostName --user=mysqlUserName --password --tab="/tmp/" --fields-escaped-by='' --fields-optionally-enclosed-by=0x22 --fields-terminated-by=0x2C --lines-terminated-by=0x0D0A --databases databaseName --tables table1 table2 table3
 Warning: A partial dump from a server that has GTIDs will by default include the GTIDs of all transactions, even those that changed suppressed parts of the database. If you don't want to restore GTIDs, pass --set-gtid-purged=OFF. To make a complete dump, pass --all-databases --triggers --routines --events.
 Warning: A dump from a server that has GTIDs enabled will by default include the GTIDs of all transactions, even those that were executed during its extraction and might not be represented in the dumped data. This might result in an inconsistent data dump.
@@ -212,17 +215,17 @@ https://dev.mysql.com/doc/mysql-infoschema-excerpt/8.0/en/information-schema-tab
 
 Oracle Lifetime Support policy, https://www.oracle.com/support/lifetime-support/
 
-10.10.1 Unicode Character Sets, https://dev.mysql.com/doc/refman/8.0/en/charset-unicode-sets.html
+Unicode Character Sets, https://dev.mysql.com/doc/refman/8.0/en/charset-unicode-sets.html
 
-11.3.2 The CHAR and VARCHAR Types, https://dev.mysql.com/doc/refman/8.0/en/char.html
+The CHAR and VARCHAR Types, https://dev.mysql.com/doc/refman/8.0/en/char.html
 
 Limits on Table Column Count and Row Size, https://dev.mysql.com/doc/refman/8.0/en/column-count-limit.html
 
-11.6 Data Type Default Values, https://dev.mysql.com/doc/refman/8.0/en/data-type-defaults.html
+Data Type Default Values, https://dev.mysql.com/doc/refman/8.0/en/data-type-defaults.html
 
 import data to MySQL database, https://dev.mysql.com/doc/refman/8.0/en/load-data.html
 
-Chapter 15 https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html
+https://dev.mysql.com/doc/refman/8.0/en/innodb-storage-engine.html
 
 https://mariadb.com/kb/en/aria-storage-engine/
 
