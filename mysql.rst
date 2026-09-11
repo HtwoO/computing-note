@@ -149,7 +149,7 @@ Server side data export
 
 The following didn't work, tested on 2024-01-31
 
-`0x22`: `"`, `0x2c`: `,` `0x0d`: `\r`, `0x0a`: `\n`
+``0x22``: ``"``, ``0x2c``: ``,`` ``0x0d``: ``\r``, ``0x0a``: ``\n``
 
 >>> mysqldump --host=serverHostName --user=mysqlUserName --password --tab="/tmp/" --fields-escaped-by='' --fields-optionally-enclosed-by=0x22 --fields-terminated-by=0x2C --lines-terminated-by=0x0D0A --databases databaseName --tables table1 table2 table3
 Warning: A partial dump from a server that has GTIDs will by default include the GTIDs of all transactions, even those that changed suppressed parts of the database. If you don't want to restore GTIDs, pass --set-gtid-purged=OFF. To make a complete dump, pass --all-databases --triggers --routines --events.
